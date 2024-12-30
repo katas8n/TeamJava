@@ -1,0 +1,7 @@
+CREATE TABLE dragon (
+    id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(23) NOT NULL,
+    HP INT NOT NULL,
+    MP INT NOT NULL,
+    damage int not null
+);

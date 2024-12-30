@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = { "http://localhost:5173" })
+@CrossOrigin(origins = { "http://localhost:127.0.0.1" })
 @RestController
 @RequestMapping("/users")
 public class UserContoller {
@@ -21,7 +21,7 @@ public class UserContoller {
 
     @GetMapping
     public List<User> getUsers() {
-        UserDTO userDTO = new UserDTO("Jim", "jim@i.ua");
+        UserDTO userDTO = new UserDTO("Jim", "jim@i.ua",23);
 
         System.out.println(userDTO.getName());
         System.out.println(userDTO.getEmail());
@@ -37,6 +37,13 @@ public class UserContoller {
 
     @PostMapping
     public User addUser(@RequestBody User user) {
+        System.out.println(user.toString());
+
         return  userService.create(user);
+    }
+
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.findAll().stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

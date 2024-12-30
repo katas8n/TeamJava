@@ -1,0 +1,1 @@
+ALTER TABLE users_demo ADD COLUMN age INT NOT NULL;
